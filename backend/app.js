@@ -5,7 +5,8 @@ import router from "./routes/user-routes.js";
 import cors from "cors";
 
 const app = express();
-const adminPassword = encodeURIComponent( 's9A*LdqXQt@3k!5' );
+//add password when you want to run app
+const adminPassword = encodeURIComponent( 'password' );
 
 app.use(cors());
 app.use(express.json());
