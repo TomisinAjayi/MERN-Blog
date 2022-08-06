@@ -1,37 +1,64 @@
-import React from 'react';
-import { Avatar, CardContent, CardHeader, CardMedia, Typography } from '@mui/material';
-import { Card } from 'react-bootstrap';
+import React from 'react'
+import { Avatar, Box, Card, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useStyles } from "./Utils";
 
-const Blog = () => {
-  return (
+const Blog = ({ title, description, imageURL, userName, isUser, id }) => {
+  const classes = useStyles();
+  console.log(title, isUser);
+  const navigate = useNavigate();
+  const handleEdit = () => {
+    navigate(`myBlogs/${id}`);
+  };
+  const deleteRequest = async () => {
+    const res = await axios
+    .delete(`http://localhost:8080/api/blog/${id}`)
+    .catch((err) => console.log(err));
+    const data = await res.data;
+    return data;
+  };
+  const handleDelete = () => {
+    deleteRequest()
+    .then(() => navigate("/"))
+    .then(() => navigate("/blogs"));
+  };
+    return (
     <div>
-        
-        <Card sx={{ width: "40%", margin: "auto", mt: 2, padding: 2, boxShadow: "5px 5px 10px #ccc", ":hover:":{ boxShadow: "10px 10px 20px #ccc"}, }}>
-            <CardHeader
-                avatar={
-                <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-                    R
-                </Avatar>
-                }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
-            />
-            <CardMedia
-                component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
-                alt="Paella dish"
-            />
-            <CardContent>
-                <Typography variant="body2" color="yellow">
-                This impressive paella is a perfect party dish and a fun meal to cook
-                together with your guests. Add 1 cup of frozen peas along with the mussels,
-                if you like.
-                </Typography>
-            </CardContent>
-        </Card>
+        {" "}
+    <Card sx={{ width: "40%", margin: "auto", mt: 2, padding: 2, boxShadow: "5px 5px 10px #ccc", ":hover:": {boxShadow: "10px 10px 20px #ccc",}, }}>
+      {isUser && (
+        <Box display="flex">
+            <IconButton onClick={handleEdit} sx={{marginLeft: "auto"}}><ModeEditOutlineIcon color="warning" /></IconButton>
+            <IconButton onClick={handleDelete}><DeleteForeverIcon color="error" /></IconButton>
+        </Box>
+      )}
+      <CardHeader
+        avatar={
+          <Avatar className={classes.font} sx={{ bgcolor: "red" }} aria-label="recipe">
+            {userName ? userName.charAt(0) : ""}
+          </Avatar>
+        }
+        title={title}
+      />
+      <CardMedia
+        component="img"
+        height="194"
+        image={imageURL}
+        alt="Paella dish"
+      />
+      <CardContent>
+        <hr />
+        <br />
+        <Typography className={classes.font} variant="body2" color="text.secondary">
+          <b>{ userName }</b> {": "} {description}
+        </Typography>
+      </CardContent>
+    </Card>
     </div>
   );
-}
+};
 
 export default Blog;

@@ -21,12 +21,14 @@ const Auth = () => {
         }));
     };
     const sendRequest = async (type="login") => {
-        const res = await axios.post(`http://localhost:8080/api/user/${type}`, {
+        const res = await axios
+        .post(`http://localhost:8080/api/user/${type}`, {
             name: inputs.name,    
             email: inputs.email,
             password: inputs.password
-        }).catch(err=>console.log(err));
+        }).catch((err)=>console.log(err));
         const data = await res.data;
+        console.log(data);
         return data;
     };
     const handleSubmit = (e) => {
@@ -34,11 +36,13 @@ const Auth = () => {
         console.log(inputs);
         if(isSignup) {
             sendRequest("signup")
+            .then((data) => localStorage.setItem("userId", data.user._id))
             .then(()=>dispath(authActions.login()))
             .then(()=>navigate("/blogs"))
             .then(data=>console.log(data));
         } else {
             sendRequest()
+            .then((data) => localStorage.setItem("userId", data.user._id))
             .then(()=>dispath(authActions.login()))
             .then(()=>navigate("/blogs"))
             .then(data=>console.log(data))
@@ -48,11 +52,11 @@ const Auth = () => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <Box display="flex" flexDirection={"column"} alignItems="center" justifyContent="center" boxShadow="10px 10px 20px #ccc" padding={3} margin="auto" marginTop={5} borderRadius={5}>
+                <Box maxWidth={400} display="flex" flexDirection={"column"} alignItems="center" justifyContent="center" boxShadow="10px 10px 20px #ccc" padding={3} margin="auto" marginTop={5} borderRadius={5}>
                     <Typography variant="h2" padding={3} textAlign="center">{isSignup ? "Signup" : "Login"}</Typography>
-                    { isSignup &&
+                    { isSignup && (
                         <TextField name="name" onChange={handleChange} value={inputs.name} placeholder="Name" margin="normal" /> 
-                    }
+                    )} {" "}
                     <TextField name="email" onChange={handleChange} value={inputs.email} type={"email"} placeholder="Email" margin="normal" />
                     <TextField name="password" onChange={handleChange} value={inputs.password} type={"password"} placeholder="Password" margin="normal" />
                     <Button type="submit" variant="contained" sx={{ borderRadius: 3, marginTop: 3}} color="warning">Submit</Button>
