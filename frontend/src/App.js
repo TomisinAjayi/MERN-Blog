@@ -24,6 +24,7 @@ function App() {
         <Header />
       </header>
       <main>
+        <Blogs />
         <Routes>
           { !isLoggedIn ? (
           <Route path="/auth" element={<Auth />} />

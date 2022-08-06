@@ -6,7 +6,7 @@ import cors from "cors";
 
 const app = express();
 //add password when you want to run app
-const adminPassword = encodeURIComponent( 'password' );
+const adminPassword = encodeURIComponent( 's9A*LdqXQt@3k!5' );
 
 app.use(cors());
 app.use(express.json());
