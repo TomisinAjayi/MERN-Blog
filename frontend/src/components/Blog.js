@@ -8,10 +8,9 @@ import { useStyles } from "./Utils";
 
 const Blog = ({ title, description, imageURL, userName, isUser, id }) => {
   const classes = useStyles();
-  console.log(title, isUser);
   const navigate = useNavigate();
   const handleEdit = () => {
-    navigate(`myBlogs/${id}`);
+    navigate(`/myBlogs/${id}`);
   };
   const deleteRequest = async () => {
     const res = await axios
@@ -42,6 +41,7 @@ const Blog = ({ title, description, imageURL, userName, isUser, id }) => {
           </Avatar>
         }
         title={title}
+        // date={date}
       />
       <CardMedia
         component="img"

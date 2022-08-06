@@ -13,7 +13,9 @@ const Header = () => {
   return (
     <AppBar position='sticky' sx={{ background: "purple" }}>
         <Toolbar>
-            <Typography className={classes.font} variant='h4'>BlogsApp</Typography>
+            <Typography className={classes.font} variant='h4'>
+                <Button LinkComponent={Link} to="/blogs" sx={{fontSize: "20px", color: "white"}}>BlogsApp</Button>
+            </Typography>
             { isLoggedIn && (
                 <Box display="flex" marginLeft={'auto'} marginRight="auto">
                     <Tabs textColor='inherit' value={value} onChange={(e,val)=>setValue(val)}>

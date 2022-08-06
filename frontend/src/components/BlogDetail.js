@@ -1,4 +1,5 @@
-import { Box, Button, InputLabel, TextField, Typography } from '@mui/material';
+import { Button, InputLabel, TextField, Typography } from '@mui/material';
+import { Box } from "@mui/system";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';

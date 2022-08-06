@@ -20,7 +20,7 @@ const Auth = () => {
             [e.target.name] : e.target.value
         }));
     };
-    const sendRequest = async (type="login") => {
+    const sendRequest = async ( type="login" ) => {
         const res = await axios
         .post(`http://localhost:8080/api/user/${type}`, {
             name: inputs.name,    
