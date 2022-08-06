@@ -41,7 +41,7 @@ export const signup = async(req, res, next) => {
        return console.log(err);
     }
     return res.status(201).json({user});
-}
+};
 
 export const login = async(req, res, next) => {
     const { email, password } = req.body;
@@ -61,4 +61,4 @@ export const login = async(req, res, next) => {
         return res.status(400).json({ message: "Incorrect password"})
     }
     return res.status(200).json({ message: "Login Successful", user: existingUser})
-}
+};

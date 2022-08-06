@@ -68,13 +68,13 @@ const handleSubmit = (e) => {
             name="title" 
             onChange={handleChange} 
             value={inputs.title} 
-            margin="auto"
+            fullWidth
             variant="outlined" 
           />
           <InputLabel className={classes.font} sx={{mb: 1, mt: 2, fontsize: "24px", fontWeight: "bold"}}>Description</InputLabel>
-          <TextField className={classes.font} name="description" onChange={handleChange} value={inputs.description} margin="auto" variant="outlined" />
+          <TextField className={classes.font} name="description" onChange={handleChange} value={inputs.description} fullWidth variant="outlined" />
           <InputLabel className={classes.font} sx={{mb: 1, mt: 2, fontsize: "24px", fontWeight: "bold"}}>ImageURL</InputLabel>
-          <TextField className={classes.font} name="imageURL" onChange={handleChange} value={inputs.imageURL} margin="auto" variant="outlined" />
+          <TextField className={classes.font} name="imageURL" onChange={handleChange} value={inputs.imageURL} fullWidth variant="outlined" />
           <Button sx={{mt: 2, borderRadius: 4}} variant="contained" color="warning" type="submit">Submit</Button>
         </Box>
       </form>

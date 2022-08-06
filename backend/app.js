@@ -3,10 +3,11 @@ import mongoose from "mongoose";
 import blogRouter from "./routes/blog-routes.js";
 import router from "./routes/user-routes.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 const app = express();
 //add password when you want to run app
-const adminPassword = encodeURIComponent( 's9A*LdqXQt@3k!5' );
+const adminPassword = encodeURIComponent( 'password' );
 
 app.use(cors());
 app.use(express.json());

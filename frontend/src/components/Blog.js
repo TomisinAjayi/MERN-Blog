@@ -30,19 +30,17 @@ const Blog = ({ title, description, imageURL, userName, isUser, id }) => {
     <Card sx={{ width: "40%", margin: "auto", mt: 2, padding: 2, boxShadow: "5px 5px 10px #ccc", ":hover:": {boxShadow: "10px 10px 20px #ccc",}, }}>
       {isUser && (
         <Box display="flex">
-            <IconButton onClick={handleEdit} sx={{marginLeft: "auto"}}><ModeEditOutlineIcon color="warning" /></IconButton>
-            <IconButton onClick={handleDelete}><DeleteForeverIcon color="error" /></IconButton>
+          <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}><ModeEditOutlineIcon color="warning" /></IconButton>
+          <IconButton onClick={handleDelete}><DeleteForeverIcon color="error" /></IconButton>
         </Box>
       )}
-      <CardHeader
-        avatar={
-          <Avatar className={classes.font} sx={{ bgcolor: "red" }} aria-label="recipe">
+        <CardHeader
+          avatar={<Avatar className={classes.font} sx={{ bgcolor: "red" }} aria-label="UserName">
             {userName ? userName.charAt(0) : ""}
-          </Avatar>
-        }
-        title={title}
-        // date={date}
-      />
+          </Avatar>}
+          title={title} 
+        />
+      
       <CardMedia
         component="img"
         height="194"

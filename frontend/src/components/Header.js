@@ -9,7 +9,7 @@ const Header = () => {
     const classes = useStyles();
     const dispath = useDispatch();
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
-    const [value, setValue] = useState();
+    const [value, setValue] = useState(0);
   return (
     <AppBar position='sticky' sx={{ background: "purple" }}>
         <Toolbar>
